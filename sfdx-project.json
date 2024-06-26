@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "IdeaSuggestionSystem",
+  "namespace": "",
+  "sfdcLoginUrl": "https://blackforce123--c7group10.sandbox.lightning.force.com/",
+  "sourceApiVersion": "61.0"
+}

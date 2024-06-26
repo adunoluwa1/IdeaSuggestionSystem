@@ -1,0 +1,116 @@
+.suggestion-box {
+    margin-bottom: 1rem;
+    border: 1px solid #d8dde6;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.suggestion-box h3 a {
+    color: #261f44;
+    text-decoration: none;
+}
+
+.comment-box {
+    border: 1px solid #e2e6ed;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-group {
+    margin-top: 0.5rem;
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.slds-modal__header,
+.slds-modal__footer {
+    background-color: #f4f6f9;
+}
+
+.slds-modal__header {
+    border-bottom: 1px solid #d8dde6;
+}
+
+.slds-modal__footer {
+    border-top: 1px solid #d8dde6;
+}
+
+.post-suggestion-button {
+    background-color: #261f44;
+    color: white;
+}
+
+.delete-comment-button,
+.delete-comment-icon {
+    color: black;
+}
+
+.slds-float_right {
+    float: right;
+}
+
+.upvote-button .slds-button__icon {
+    fill: green;
+}
+
+.downvote-button .slds-button__icon {
+    fill: red;
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-controls .button-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+.top-controls .search-post-group {
+    display: flex;
+    align-items: center;
+}
+
+.top-controls .search-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.top-controls .post-suggestion-button {
+    vertical-align: middle;
+}
+
+.filter-button {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.search-box {
+    margin-right: 0.5rem;
+}
+
+.slds-modal {
+    z-index: 1050;
+}
+
+.slds-backdrop {
+    z-index: 1040;
+}
+
+.comment-modal {
+    z-index: 1100;
+}
+
+.comment-backdrop {
+    z-index: 1090;
+}

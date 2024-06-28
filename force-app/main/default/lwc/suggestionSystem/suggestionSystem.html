@@ -100,6 +100,8 @@
                     <h2 class="slds-text-heading_medium">Add Comment</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-input label="First Name" value={commentFirstName} onchange={handleCommentFirstNameChange}></lightning-input>
+                    <lightning-input label="Last Name" value={commentLastName} onchange={handleCommentLastNameChange}></lightning-input>
                     <lightning-textarea label="Comment" value={commentText} onchange={handleCommentChange}></lightning-textarea>
                 </div>
                 <footer class="slds-modal__footer">
@@ -140,10 +142,11 @@
                             <template for:each={detailComments} for:item="comment">
                                 <div key={comment.Id} class="slds-m-vertical_small">
                                     <div class="slds-box slds-theme_shade comment-box slds-grid slds-wrap slds-grid_align-spread">
+                                        <p class="slds-col slds-size_11-of-12"><strong>{comment.Submitter__c}</strong></p>
                                         <p class="slds-col slds-size_11-of-12">{comment.Comment_Text__c}</p>
                                         <lightning-button-icon icon-name="utility:delete" alternative-text="Delete Comment" data-id={comment.Id} onclick={deleteCommentDetail} class="slds-col slds-size_1-of-12 delete-comment-icon"></lightning-button-icon>
                                     </div>
-                                    <p class="slds-m-top_x-small"><strong>Submitted By:</strong> {comment.Submitter__c}</p>
+                                    <p class="slds-m-top_x-small">{comment.formattedCommentDate}</p>
                                     <hr/>
                                 </div>
                             </template>

@@ -99,9 +99,9 @@ public with sharing class SuggestionController {
     }
 
     @AuraEnabled
-    public static void addComment(Comment__c newComment) {
+    public static void addComment(Comment__c newComment, String firstName, String lastName) {
         newComment.Comment_Date__c = Datetime.now();
-        newComment.Submitter__c = UserInfo.getUserName();
+        newComment.Submitter__c = firstName + ' ' + lastName;
         insert newComment;
     }
 

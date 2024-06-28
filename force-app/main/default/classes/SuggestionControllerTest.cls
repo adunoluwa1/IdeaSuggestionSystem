@@ -81,23 +81,23 @@ public class SuggestionControllerTest {
     public static void testAddComment() {
         Suggestion__c newSuggestion = new Suggestion__c(Name = 'New Suggestion', Description__c = 'New Description', Category__c = 'Technical');
         insert newSuggestion;
-        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment');
+        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment', Submitter__c = 'Test User');
 
         Test.startTest();
-        SuggestionController.addComment(newComment);
+        SuggestionController.addComment(newComment, 'Test', 'User');
         Test.stopTest();
         
         List<Comment__c> comments = [SELECT Id, Comment_Text__c, Submitter__c FROM Comment__c WHERE Suggestion__c = :newSuggestion.Id];
         System.assertEquals(1, comments.size());
         System.assertEquals('Test Comment', comments[0].Comment_Text__c);
-        System.assertEquals(UserInfo.getUserName(), comments[0].Submitter__c);
+        System.assertEquals('Test User', comments[0].Submitter__c);
     }
 
     @isTest
     public static void testGetComments() {
         Suggestion__c newSuggestion = new Suggestion__c(Name = 'New Suggestion', Description__c = 'New Description', Category__c = 'Technical');
         insert newSuggestion;
-        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment');
+        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment', Submitter__c = 'Test User');
         insert newComment;
 
         Test.startTest();
@@ -106,14 +106,14 @@ public class SuggestionControllerTest {
 
         System.assertEquals(1, comments.size());
         System.assertEquals('Test Comment', comments[0].Comment_Text__c);
-        System.assertEquals('Commenter', comments[0].Submitter__c);
+        System.assertEquals('Test User', comments[0].Submitter__c);
     }
 
     @isTest
     public static void testDeleteComment() {
         Suggestion__c newSuggestion = new Suggestion__c(Name = 'New Suggestion', Description__c = 'New Description', Category__c = 'Technical');
         insert newSuggestion;
-        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment');
+        Comment__c newComment = new Comment__c(Suggestion__c = newSuggestion.Id, Comment_Text__c = 'Test Comment', Submitter__c = 'Test User');
         insert newComment;
 
         Test.startTest();

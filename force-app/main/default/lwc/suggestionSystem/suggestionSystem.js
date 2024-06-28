@@ -34,6 +34,8 @@ export default class SuggestionSystem extends LightningElement {
     suggestionDescription = '';
     suggestionCategory = '';
     commentText = '';
+    commentFirstName = '';
+    commentLastName = '';
     searchQuery = '';
     filterType = 'All Suggestions';
     wiredSuggestionsResult;
@@ -125,6 +127,14 @@ export default class SuggestionSystem extends LightningElement {
 
     handleCommentChange(event) {
         this.commentText = event.target.value;
+    }
+
+    handleCommentFirstNameChange(event) {
+        this.commentFirstName = event.target.value;
+    }
+
+    handleCommentLastNameChange(event) {
+        this.commentLastName = event.target.value;
     }
 
     handleSearchChange(event) {
@@ -260,11 +270,13 @@ export default class SuggestionSystem extends LightningElement {
         const newComment = {
             Suggestion__c: this.commentSuggestionId,
             Comment_Text__c: this.commentText,
-            Submitter__c: this.userName
+            Submitter__c: `${this.commentFirstName} ${this.commentLastName}`
         };
-        addComment({ newComment })
+        addComment({ newComment, firstName: this.commentFirstName, lastName: this.commentLastName })
             .then(() => {
                 this.commentText = '';
+                this.commentFirstName = '';
+                this.commentLastName = '';
                 this.isCommentModalOpen = false;
                 this.refreshComments(this.commentSuggestionId);
             })
@@ -308,8 +320,13 @@ export default class SuggestionSystem extends LightningElement {
         getComments({ suggestionId })
             .then(result => {
                 const suggestion = this.suggestions.find(s => s.Id === suggestionId);
-                suggestion.comments = result;
-                this.detailComments = result;
+                suggestion.comments = result.map(comment => {
+                    return {
+                        ...comment,
+                        formattedCommentDate: this.formatDate(comment.Comment_Date__c)
+                    };
+                });
+                this.detailComments = suggestion.comments;
             })
             .catch(error => {
                 console.error('Error fetching comments:', error);
